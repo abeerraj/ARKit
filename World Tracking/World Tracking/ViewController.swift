@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         let doorNode = SCNNode(geometry: SCNPlane(width: 0.03, height: 0.06))
         let boxNode = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
 
-        // Add light
+        // Add color / light
         node.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
         node.geometry?.firstMaterial?.specular.contents = UIColor.orange // white light will reflect off, but you need light
         
@@ -33,7 +33,7 @@ class ViewController: UIViewController {
         // Node Positioning
         node.position = SCNVector3(0.2, 0.3, -0.2)
         boxNode.position = SCNVector3(0, -0.05, 0)
-        doorNode.position = SCNVector3(0, 0, 0.053)
+        doorNode.position = SCNVector3(0, -0.02, 0.053)
         
         // Add node to scene
         sceneView.scene.rootNode.addChildNode(node)
