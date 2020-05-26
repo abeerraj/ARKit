@@ -24,11 +24,23 @@ class ViewController: UIViewController {
         sceneView.scene.rootNode.addChildNode(node)
     }
     
+    @IBAction func resetPressed(_ sender: Any) {
+        self.resetSession()
+    }
+    
+    func resetSession() {
+        sceneView.session.pause()
+        sceneView.scene.rootNode.enumerateChildNodes { (node, _) in
+            node.removeFromParentNode()
+        }
+        sceneView.session.run(arConfig, options: [.resetTracking, .removeExistingAnchors])
+    }
+    
     // ViewCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
+        sceneView.debugOptions = [.showFeaturePoints, .showWorldOrigin]
         sceneView.session.run(arConfig)
     }
 }

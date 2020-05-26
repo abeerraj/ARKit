@@ -31,6 +31,19 @@
                                     <action selector="addPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ccj-N5-jLv"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1u-Uz-5VB">
+                                <rect key="frame" x="314" y="762" width="80" height="80"/>
+                                <color key="backgroundColor" red="0.15257585330000001" green="0.2178194597" blue="0.45715268780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="Fml-K5-TR1"/>
+                                    <constraint firstAttribute="width" constant="80" id="f9x-m8-lIk"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Reset"/>
+                                <connections>
+                                    <action selector="resetPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0ql-mg-caK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -40,6 +53,8 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="298-IL-7CH" secondAttribute="trailing" id="bTi-fk-N5n"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="OTM-Az-Zwu" secondAttribute="bottom" constant="20" id="crZ-Ra-bfU"/>
                             <constraint firstItem="298-IL-7CH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="e9j-ie-QyF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="e1u-Uz-5VB" secondAttribute="trailing" constant="20" id="pdf-A3-qil"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="e1u-Uz-5VB" secondAttribute="bottom" constant="20" id="zcR-8j-Bym"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
