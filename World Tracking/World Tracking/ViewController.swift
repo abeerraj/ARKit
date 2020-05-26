@@ -17,28 +17,26 @@ class ViewController: UIViewController {
     
     // IBActions
     @IBAction func addPressed(_ sender: Any) {
-        let node = SCNNode(geometry: SCNPyramid(width: 0.1, height: 0.1, length: 0.1))
-        let doorNode = SCNNode(geometry: SCNPlane(width: 0.03, height: 0.06))
-        let boxNode = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
+        let node = SCNNode(geometry: SCNCylinder(radius: 0.1, height: 0.1))
+        let pyramid = SCNNode(geometry: SCNPyramid(width: 0.1, height: 0.1, length: 0.1))
 
         // Add color / light
         node.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
         node.geometry?.firstMaterial?.specular.contents = UIColor.orange // white light will reflect off, but you need light
         
-        boxNode.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
-        boxNode.geometry?.firstMaterial?.specular.contents = UIColor.orange
-        
-        doorNode.geometry?.firstMaterial?.diffuse.contents = UIColor.brown
+        pyramid.geometry?.firstMaterial?.diffuse.contents = UIColor.red
         
         // Node Positioning
-        node.position = SCNVector3(0.2, 0.3, -0.2)
-        boxNode.position = SCNVector3(0, -0.05, 0)
-        doorNode.position = SCNVector3(0, -0.02, 0.053)
+        node.position = SCNVector3(0, 0, -0.3)
+        
+        pyramid.position = SCNVector3(0, 0, -0.5)
+        
+        // Rotations
+        node.eulerAngles = SCNVector3(90.degreesToRadians, 0, 0)
         
         // Add node to scene
         sceneView.scene.rootNode.addChildNode(node)
-        node.addChildNode(boxNode)
-        boxNode.addChildNode(doorNode)
+        node.addChildNode(pyramid)
     }
     
     @IBAction func resetPressed(_ sender: Any) {
@@ -70,3 +68,6 @@ class ViewController: UIViewController {
     }
 }
 
+extension Int {
+    var degreesToRadians: Float { return Float(self) * .pi/180 }
+}
