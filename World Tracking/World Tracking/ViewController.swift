@@ -17,29 +17,28 @@ class ViewController: UIViewController {
     
     // IBActions
     @IBAction func addPressed(_ sender: Any) {
-        let node = SCNNode()
-        let cylinderNode = SCNNode(geometry: SCNCylinder(radius: 0.05, height: 0.05))
+        let node = SCNNode(geometry: SCNPyramid(width: 0.1, height: 0.1, length: 0.1))
+        let doorNode = SCNNode(geometry: SCNPlane(width: 0.03, height: 0.06))
+        let boxNode = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
 
-        // Add shape
-        node.geometry = SCNPyramid(width: 0.1, height: 0.1, length: 0.1)
-        
         // Add light
-        node.geometry?.firstMaterial?.specular.contents = UIColor.orange // white light will reflect off, but you need light
         node.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+        node.geometry?.firstMaterial?.specular.contents = UIColor.orange // white light will reflect off, but you need light
         
-        cylinderNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+        boxNode.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+        boxNode.geometry?.firstMaterial?.specular.contents = UIColor.orange
+        
+        doorNode.geometry?.firstMaterial?.diffuse.contents = UIColor.brown
         
         // Node Positioning
-//        node.position = SCNVector3(randomNumbers(), // X
-//                                   randomNumbers(), // Y
-//                                   randomNumbers()) // Z
-        
         node.position = SCNVector3(0.2, 0.3, -0.2)
-        cylinderNode.position = SCNVector3(-0.3, 0.2, -0.3)
+        boxNode.position = SCNVector3(0, -0.05, 0)
+        doorNode.position = SCNVector3(0, 0, 0.053)
         
         // Add node to scene
         sceneView.scene.rootNode.addChildNode(node)
-        node.addChildNode(cylinderNode)
+        node.addChildNode(boxNode)
+        boxNode.addChildNode(doorNode)
     }
     
     @IBAction func resetPressed(_ sender: Any) {
