@@ -18,55 +18,28 @@ class ViewController: UIViewController {
     // IBActions
     @IBAction func addPressed(_ sender: Any) {
         let node = SCNNode()
-        
-        // Custom House Shape \\
-        let path = UIBezierPath()
-        path.move(to: CGPoint(x: 0, y: 0))
-        path.addLine(to: CGPoint(x: 0, y: 0.2))
-        path.addLine(to: CGPoint(x: 0.2, y: 0.3))
-        path.addLine(to: CGPoint(x: 0.4, y: 0.2))
-        path.addLine(to: CGPoint(x: 0.4, y: 0))
-        
-        node.geometry = SCNShape(path: path, extrusionDepth: 0.2)
-        
-        // Pyramid \\
-//        node.geometry = SCNPyramid(width: 0.1, height: 0.1, length: 0.1)
-        
-        // Plane \\
-//        node.geometry = SCNPlane(width: 0.2, height: 0.2)
-        
-        // Torus \\
-//        node.geometry = SCNTorus(ringRadius: 0.3, pipeRadius: 0.1)
-        
-        // Tube \\
-//        node.geometry = SCNTube(innerRadius: 0.1, outerRadius: 0.2, height: 0.5)
-        
-        // Sphere \\
-//        node.geometry = SCNSphere(radius: 0.3)
-        
-        // Cylinder \\
-//        node.geometry = SCNCylinder(radius: 0.2, height: 0.2)
-        
-        // Cone \\
-//        node.geometry = SCNCone(topRadius: 0, bottomRadius: 0.2, height: 0.2)
-        
-        // Capsule \\
-//        node.geometry = SCNCapsule(capRadius: 0.1, height: 0.3)
-        
-        // Box \\
-//        node.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.03)
+        let cylinderNode = SCNNode(geometry: SCNCylinder(radius: 0.05, height: 0.05))
+
+        // Add shape
+        node.geometry = SCNPyramid(width: 0.1, height: 0.1, length: 0.1)
         
         // Add light
         node.geometry?.firstMaterial?.specular.contents = UIColor.orange // white light will reflect off, but you need light
         node.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
         
-        // Generate random position in range -0.3...0.3
-        node.position = SCNVector3(randomNumbers(), // X
-                                   randomNumbers(), // Y
-                                   randomNumbers()) // Z
+        cylinderNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+        
+        // Node Positioning
+//        node.position = SCNVector3(randomNumbers(), // X
+//                                   randomNumbers(), // Y
+//                                   randomNumbers()) // Z
+        
+        node.position = SCNVector3(0.2, 0.3, -0.2)
+        cylinderNode.position = SCNVector3(-0.3, 0.2, -0.3)
         
         // Add node to scene
         sceneView.scene.rootNode.addChildNode(node)
+        node.addChildNode(cylinderNode)
     }
     
     @IBAction func resetPressed(_ sender: Any) {
