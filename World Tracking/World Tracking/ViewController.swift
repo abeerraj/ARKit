@@ -18,7 +18,9 @@ class ViewController: UIViewController {
     // IBActions
     @IBAction func addPressed(_ sender: Any) {
         let node = SCNNode()
-        node.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0)
+        node.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.03) // divide chamferRadius by 2 to generate sphere
+        
+        node.geometry?.firstMaterial?.specular.contents = UIColor.orange // white light will reflect off, but you need light
         node.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
         node.position = SCNVector3(0, 0, -0.3) // X, Y, Z
         sceneView.scene.rootNode.addChildNode(node)
@@ -42,6 +44,8 @@ class ViewController: UIViewController {
         
         sceneView.debugOptions = [.showFeaturePoints, .showWorldOrigin]
         sceneView.session.run(arConfig)
+        
+        sceneView.autoenablesDefaultLighting = true // auto adds onmi-directional light source
     }
 }
 
