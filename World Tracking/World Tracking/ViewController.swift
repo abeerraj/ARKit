@@ -22,7 +22,9 @@ class ViewController: UIViewController {
         
         node.geometry?.firstMaterial?.specular.contents = UIColor.orange // white light will reflect off, but you need light
         node.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
-        node.position = SCNVector3(0, 0, -0.3) // X, Y, Z
+        node.position = SCNVector3(randomNumbers(), // X
+                                   randomNumbers(), // Y
+                                   randomNumbers()) // Z
         sceneView.scene.rootNode.addChildNode(node)
     }
     
@@ -30,12 +32,18 @@ class ViewController: UIViewController {
         self.resetSession()
     }
     
+    // Functions
     func resetSession() {
         sceneView.session.pause()
         sceneView.scene.rootNode.enumerateChildNodes { (node, _) in
             node.removeFromParentNode()
         }
         sceneView.session.run(arConfig, options: [.resetTracking, .removeExistingAnchors])
+    }
+    
+    /// Returns random range in range firstNum...secondNum
+    func randomNumbers(firstNum: CGFloat = -0.3, secondNum: CGFloat = 0.3) -> CGFloat {
+        return CGFloat(arc4random()) / CGFloat(UINT32_MAX) * abs(firstNum - secondNum) + min(firstNum, secondNum)
     }
     
     // ViewCycle Methods
